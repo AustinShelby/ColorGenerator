@@ -3,11 +3,13 @@ import { useState } from "react";
 import ColorDisplay from "./ColorDisplay";
 import NumberInput from "./NumberInput";
 import ShadeCode from "./ShadeCode";
+import { ShadeGenerator } from "./ShadeGenerator";
 
 const App: React.FC = () => {
   const [hue, setHue] = useState(180);
   const [saturation, setSaturation] = useState(50);
-  const shades = [100, 200, 300, 400, 500, 600, 700, 900];
+  const [endSaturation, setEndSaturation] = useState(3);
+  const shades = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900];
   return (
     <div className="max-w-3xl mx-auto my-16 px-4 w-full text-gray-900 antialiased">
       <NumberInput
@@ -24,31 +26,42 @@ const App: React.FC = () => {
         max={100}
         min={0}
       />
+      <NumberInput
+        title="Saturate Ends"
+        value={endSaturation}
+        setValue={setEndSaturation}
+        max={10}
+        min={0}
+      />
       <ul className="space-y-2 py-8">
-        {shades.map((shade, index) => (
-          <li key={index}>
-            <ColorDisplay
-              shade={shade}
-              hue={hue}
-              saturation={saturation}
-              lightness={90 - 10 * index}
-            />
-          </li>
-        ))}
+        {ShadeGenerator(shades, hue, saturation, endSaturation).map(
+          (hslShade) => (
+            <li key={hslShade.shade}>
+              <ColorDisplay
+                shade={hslShade.shade}
+                hue={hslShade.hue}
+                saturation={hslShade.saturation}
+                lightness={hslShade.lightness}
+              />
+            </li>
+          )
+        )}
       </ul>
 
       <pre className="bg-gray-300 rounded p-4">
         blue:{" "}
         {`{
 `}
-        {shades.map((shade, index) => (
-          <ShadeCode
-            hue={hue}
-            saturation={100}
-            shade={shade}
-            lightness={10 * index + 10}
-          />
-        ))}
+        {ShadeGenerator(shades, hue, saturation, endSaturation).map(
+          (hslShade) => (
+            <ShadeCode
+              hue={hslShade.hue}
+              saturation={hslShade.saturation}
+              shade={hslShade.shade}
+              lightness={hslShade.lightness}
+            />
+          )
+        )}
         {"}"}
       </pre>
     </div>
