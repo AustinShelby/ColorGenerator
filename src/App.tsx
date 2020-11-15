@@ -4,11 +4,12 @@ import ColorDisplay from "./ColorDisplay";
 import NumberInput from "./NumberInput";
 import ShadeCode from "./ShadeCode";
 import { ShadeGenerator } from "./ShadeGenerator";
+import ShadesExample from "./ShadesExample";
 
 const App: React.FC = () => {
-  const [hue, setHue] = useState(180);
-  const [saturation, setSaturation] = useState(50);
-  const [endSaturation, setEndSaturation] = useState(3);
+  const [hue, setHue] = useState(208);
+  const [saturation, setSaturation] = useState(60);
+  const [endSaturation, setEndSaturation] = useState(6);
   const shades = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900];
   return (
     <div className="max-w-3xl mx-auto my-16 px-4 w-full text-gray-900 antialiased">
@@ -23,15 +24,18 @@ const App: React.FC = () => {
         title="Saturation"
         value={saturation}
         setValue={setSaturation}
-        max={100}
+        max={101}
         min={0}
       />
       <NumberInput
         title="Saturate Ends"
         value={endSaturation}
         setValue={setEndSaturation}
-        max={10}
-        min={0}
+        max={101}
+        min={-100}
+      />
+      <ShadesExample
+        shades={ShadeGenerator(shades, hue, saturation, endSaturation)}
       />
       <ul className="space-y-2 py-8">
         {ShadeGenerator(shades, hue, saturation, endSaturation).map(
@@ -47,14 +51,14 @@ const App: React.FC = () => {
           )
         )}
       </ul>
-
-      <pre className="bg-gray-300 rounded p-4">
+      <pre className="bg-gray-200 rounded p-4">
         blue:{" "}
         {`{
 `}
         {ShadeGenerator(shades, hue, saturation, endSaturation).map(
           (hslShade) => (
             <ShadeCode
+              key={hslShade.shade}
               hue={hslShade.hue}
               saturation={hslShade.saturation}
               shade={hslShade.shade}

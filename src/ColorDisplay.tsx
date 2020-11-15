@@ -15,17 +15,19 @@ const ColorDisplay: React.FC<IColorDisplayProps> = ({
   shade,
 }) => {
   return (
-    <div className="flex space-x-4">
-      <div
-        className="rounded shadow-md w-12 h-12"
-        style={{
-          backgroundColor: `hsl(${hue}, ${saturation}%, ${lightness}%)`,
-        }}
-      ></div>
+    <div className="flex space-x-4 items-center">
+      <div className="rounded shadow-md w-12 h-12 p-1">
+        <div
+          className="w-full h-full rounded"
+          style={{
+            backgroundColor: `hsl(${hue}, ${saturation}%, ${lightness}%)`,
+          }}
+        ></div>
+      </div>
       <div>
         <h3 className="font-semibold">{shade}</h3>
         <p className="font-mono text-gray-700 text-sm">
-          {HslCode(hue, saturation, lightness, 0)}
+          {HslCode(hue, saturation, lightness)}
         </p>
       </div>
     </div>

@@ -15,7 +15,7 @@ const ShadeCode: React.FC<IShadeCodeProps> = ({
   shade,
 }) => {
   return (
-    <>{`    ${shade}: ${HslCode(hue, saturation, lightness, shade)}${
+    <>{`  '${shade}': '${HslCode(hue, saturation, lightness)}'${
       shade < 900 ? "," : ""
     }
 `}</>

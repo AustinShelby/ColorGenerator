@@ -1,8 +1,3 @@
-export const HslCode = (
-  hue: number,
-  saturation: number,
-  lightness: number,
-  index: number
-) => {
+export const HslCode = (hue: number, saturation: number, lightness: number) => {
   return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
 };
