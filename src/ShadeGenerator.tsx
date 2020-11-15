@@ -21,8 +21,6 @@ export const ShadeGenerator = (
   ): number => {
     const value = Math.abs(shadesAmount / 2 - index);
     const extraSaturation = (endSaturation / 10) * Math.pow(value, 2);
-    console.log(value);
-    console.log(extraSaturation);
     const calculatedValue = Math.round(saturation + extraSaturation);
     if (calculatedValue < 0) {
       return 0;
