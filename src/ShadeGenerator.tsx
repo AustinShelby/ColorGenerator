@@ -5,8 +5,8 @@ export interface IHslShade {
   lightness: number;
 }
 
-const MIN_LIGTHNESS = 10;
-const MAX_LIGTHNESS = 95;
+const MIN_LIGTHNESS = 18;
+const MAX_LIGTHNESS = 97;
 
 export const ShadeGenerator = (
   shades: number[],

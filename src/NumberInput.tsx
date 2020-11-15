@@ -22,18 +22,18 @@ const NumberInput: React.FC<INumberInputProps> = ({
     }
   };
   return (
-    <>
-      <label className="block mt-4" htmlFor="hue">
+    <div>
+      <label className="" htmlFor="hue">
         {title}
       </label>
       <input
-        className="block border border-gray-400 rounded px-4 py-2 focus:outline-none focus:border-blue-500"
+        className="block w-full border border-gray-400 rounded px-4 py-2 focus:outline-none focus:border-blue-500"
         type="number"
         id="hue"
         value={value}
         onChange={handeChange}
       />
-    </>
+    </div>
   );
 };
 
